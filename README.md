@@ -66,6 +66,9 @@ When fifo buffer mode is engaged, multiple read calls must be executed to pull d
 Driver initialization
 ```
 Driver driver = new Driver();
+//Configuration the driver...
+driver.initialize();
+//Start polling data
 ```
 
 The datarate determines how often the device will write data from its sensors to the accessible registers. Available frequencies are [14.9hz, 59.5hz, 119hz, 238hz, 476hz]. Higher frequencies consume more power.
