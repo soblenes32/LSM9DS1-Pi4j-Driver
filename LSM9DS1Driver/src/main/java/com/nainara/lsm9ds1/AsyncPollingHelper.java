@@ -75,7 +75,6 @@ public class AsyncPollingHelper {
 			try{
 				while(isContinuePolling){
 					availReads = driver.pollAvailableReads();
-					System.out.println("Waking up! Available reads before polling: " + availReads);
 					for(int reads=availReads; reads > 0; reads--){
 						driver.pollIMU();
 						Polling polling = new Polling();
