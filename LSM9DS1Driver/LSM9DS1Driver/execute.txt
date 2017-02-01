@@ -1,2 +1,0 @@
-cd workspace
-sudo java -cp "LSM9DS1-0.1.0.jar:lib/*" com.nainara.lsm9ds1.AsyncPollingHelperTest > out.txt

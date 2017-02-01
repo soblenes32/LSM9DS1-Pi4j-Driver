@@ -1,6 +1,0 @@
-lcd ./build/libs
-cd workspace
-mput ./LSM9DS1-0.1.0.jar
-cd lib
-mput *.jar
-bye
