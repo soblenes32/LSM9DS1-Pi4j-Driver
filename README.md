@@ -1,6 +1,6 @@
 # LSM9DS1 Pi4j Driver
 
-A java driver to poll the Sparkfun LSM9DS1 IMU breakout board. The LSM9DS1 is an 9-DoF IMU chipset that is sold on a breakout board by Sparkfun. This project is a driver to be used in conjunction with the pi4j framework, designed to provide an efficient interface to read raw and interpreted IMU polling data from the chip via the I2C bus.
+This package contains a java driver to poll the Sparkfun LSM9DS1 IMU breakout board. The LSM9DS1 is an 9-DOF IMU chipset that is available on a breakout board manufactured by Sparkfun. This project is a driver to be used in conjunction with the pi4j framework, and is designed to provide an efficient higher-level interface to read raw and interpreted IMU polling data from the chip via the I2C bus.
 
 ## Getting Started
 
@@ -10,9 +10,9 @@ As this driver is relatively lightweight with few dependencies, it may be includ
 
 ### Prerequisites
 
-The LSM9DS1 Pi4j Driver has a dependency on the Pi4j core libraries, and apache commons collections. These libraries must be included in your project classpath.
+The LSM9DS1 Pi4j Driver has a dependency on the Pi4j core libraries and apache commons collections. These libraries must be included in your project classpath.
 
-If you are including the project java source files directly and using your own gradle build script, the following dependencies should be included:
+If you are including the project java source files directly and using your own gradle build script, the following dependencies should be present:
 
 ```
 compile group: 'commons-collections', name: 'commons-collections', version: '3.2.2'
@@ -37,7 +37,7 @@ Compile the project using the gradle build wrapper.
 gradlew build
 ```
 
-Copy the resultant artifacts from the "build/lib/*.jar" directory into a workspace on your raspberry pi. Place the dependencies into a subdirectory like "./lib". From the deployment directory, execute the AsyncPollingHelperTest main class to conduct an end-to-end test.
+Copy the resultant artifacts from the "build/lib/*.jar" directory into a workspace on your raspberry pi. Place the dependencies into a subdirectory like "lib". From the deployment directory, execute the AsyncPollingHelperTest main class to conduct an end-to-end test.
 
 ```
 sudo java -cp "LSM9DS1-0.1.0.jar:lib/*" com.nainara.lsm9ds1.AsyncPollingHelperTest > out.txt
@@ -53,7 +53,7 @@ This driver is designed to support two of the IMU's four operating modes: pass-t
 
 #### Pass-through mode
 
-At the device-level, pass-through mode simply overwrites sensor data on a single set of registers. Accessing the IMU in pass-through mode will produce the most current polling data. However, as the thread timing accuracy of most JVM implementations (and their underlying operating systems) are only accurate to a granularity of ~9-13 ms, a typical java thread will be unable to keep up with the LSM9DS1's higher two frequency settings, and polling data will be "dropped" in an unpredictable way. Pass-through mode is best used for applications that employ a low refresh frequency and only require infrequent sensor data pollings. If used to poll at high frequencies, the constant thrashing of the java thread may add non-trivial overhead to the Raspberry Pi's computational load.
+At the device-level, pass-through mode simply overwrites sensor data on a single set of registers. Accessing the IMU in pass-through mode will produce the most current polling data. However, as the thread timing accuracy of most JVM implementations (and their underlying operating systems) are only accurate to a granularity of ~9-13 ms, a typical java thread will be unable to keep up with the LSM9DS1's higher two frequency settings, and polling data will be "dropped" in an unpredictable way. Pass-through mode is best used for applications that employ a low refresh frequency and only require infrequent sensor data pollings. If used to poll at high frequencies, the java thread may thrash and add non-trivial overhead to the Raspberry Pi's computational load.
 
 #### FIFO buffer mode
 
@@ -66,9 +66,10 @@ When fifo buffer mode is engaged, multiple read calls must be executed to pull d
 Driver initialization
 ```
 Driver driver = new Driver();
-//Configuration the driver...
+//...
+//Configure the driver
+//...
 driver.initialize();
-//Start polling data
 ```
 
 The datarate determines how often the device will write data from its sensors to the accessible registers. Available frequencies are [14.9hz, 59.5hz, 119hz, 238hz, 476hz]. Higher frequencies consume more power.
@@ -77,7 +78,7 @@ The datarate determines how often the device will write data from its sensors to
 driver.setDatarate(Driver.DataRate.FREQ_14_9_HZ);
 ```
 
-The accelerometer scale determines the range of forces that the accelerometer can read, and the level of precision that it reports. 2G results in the highest precision readings, while 16G produces lower precision readings.
+The accelerometer scale determines the range of forces that the accelerometer can read, and the level of precision that it reports. Plus or minus 2G results in the highest precision readings, while 16G produces lower precision readings.
 ```
 //Set the range of the accelerometer from -2G to +2G
 driver.setAccelerometerScale(Driver.AccelerometerScale.SCALE_PLUS_MINUS_2G);
@@ -89,7 +90,7 @@ The useFifoBuffer flag signals whether the device should use pass-through mode o
 driver.setUseFifoBuffer(true);
 ```
 
-The setI2cDeviceAddress address method allows the user to configure the device from alternative I2C bus addresses.
+The setI2cDeviceAddress method allows the user to configure the device from alternative I2C bus addresses.
 ```
 //Set the address of the IMU to 0x6b
 driver.setI2cDeviceAddress(0x6b);
@@ -168,9 +169,7 @@ public static void main(String[] args){
 
 * **Samuel O'Blenes**
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the LICENSE.md file for details
 
