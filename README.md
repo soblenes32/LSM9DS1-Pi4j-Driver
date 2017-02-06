@@ -1,6 +1,6 @@
 # LSM9DS1 Pi4j Driver
 
-This package contains a java driver to poll the Sparkfun LSM9DS1 IMU breakout board. The LSM9DS1 is an 9-DOF IMU chipset that is available on a breakout board manufactured by Sparkfun. This project is a driver to be used in conjunction with the pi4j framework, and is designed to provide an efficient higher-level interface to read raw and interpreted IMU polling data from the chip via the I2C bus.
+This package contains a java driver to poll the Sparkfun LSM9DS1 IMU breakout board. This project is a driver to be used in conjunction with the pi4j framework. It is designed to provide an efficient high-level interface to read raw and interpreted IMU polling data from the chip via the I2C bus.
 
 ## Getting Started
 
