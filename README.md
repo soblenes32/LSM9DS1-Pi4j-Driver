@@ -1,10 +1,10 @@
 # LSM9DS1 Pi4j Driver
 
-This package contains a java driver to poll the Sparkfun LSM9DS1 IMU breakout board. This project is a driver to be used in conjunction with the pi4j framework. It is designed to provide an efficient high-level interface to read raw and interpreted IMU polling data from the chip via the I2C bus.
+This package contains a java driver to poll the Sparkfun LSM9DS1 IMU breakout board. The driver is designed to be used in conjunction with the pi4j framework in order to provide an efficient high-level interface to read raw and interpreted IMU polling data from the chip via the I2C bus.
 
 ## Getting Started
 
-As this driver is relatively lightweight with few dependencies, it may be included in your project in one of two ways:
+As this driver is relatively lightweight, it may be included in your project in one of two ways:
 * Directly copy the source java files into your project
 * Execute the gradle build script via the command line and include the compiled jars at build/lib/*.jar into your project dependencies 
 
